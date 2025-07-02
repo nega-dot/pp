@@ -49,17 +49,22 @@ export const EnhancedTooltip = ({
       
       {isVisible && (
         <div className={cn(
-          "absolute z-50 px-3 py-2 text-sm font-medium text-foreground bg-card border border-border/50 rounded-lg shadow-lg backdrop-blur-sm",
+          "absolute z-50 px-3 py-2 text-sm font-medium text-foreground bg-card/95 backdrop-blur-sm border border-border/50 rounded-lg shadow-xl",
           "animate-in fade-in zoom-in-95 duration-200",
           "whitespace-nowrap",
+          "before:absolute before:inset-0 before:bg-gradient-to-r before:from-primary/5 before:to-transparent before:rounded-lg",
           positions[position],
           className
         )}>
-          {content}
+          <div className="relative z-10">{content}</div>
           
-          {/* Arrow */}
+          {/* Enhanced Arrow with gradient */}
           <div className={cn(
             "absolute w-0 h-0 border-4",
+            arrows[position]
+          )} />
+          <div className={cn(
+            "absolute w-0 h-0 border-[3px] border-primary/20",
             arrows[position]
           )} />
         </div>

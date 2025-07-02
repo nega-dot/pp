@@ -20,6 +20,7 @@
   --animate-meteor: meteor 5s linear infinite;
   --animate-glow: glow 2s ease-in-out infinite alternate;
   --animate-shimmer: shimmer 2s linear infinite;
+  --animate-bounce-gentle: bounce-gentle 2s ease-in-out infinite;
 
   @keyframes float {
     0%,
@@ -84,6 +85,14 @@
     }
     to {
       transform: scaleX(1);
+    }
+  }
+  @keyframes bounce-gentle {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-5px);
     }
   }
 }
@@ -198,8 +207,8 @@
 
 @layer components {
   .cosmic-button {
-    @apply px-6 py-2 rounded-full bg-primary text-primary-foreground font-medium 
-           transition-all duration-300 hover:shadow-[0_0_20px_rgba(139,92,246,0.5)]
+    @apply px-6 py-2 rounded-full bg-gradient-to-r from-primary to-primary/80 text-primary-foreground font-medium 
+           transition-all duration-300 hover:shadow-[0_0_25px_rgba(139,92,246,0.6)]
            hover:scale-105 active:scale-95 relative overflow-hidden;
   }
 

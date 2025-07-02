@@ -50,26 +50,27 @@ export const EnhancedModal = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-      {/* Backdrop */}
+      {/* Enhanced Backdrop */}
       <div 
-        className="absolute inset-0 bg-black/60 backdrop-blur-sm animate-in fade-in duration-300"
+        className="absolute inset-0 bg-black/60 backdrop-blur-md animate-in fade-in duration-300"
         onClick={onClose}
       />
       
-      {/* Modal */}
+      {/* Enhanced Modal */}
       <div className={cn(
-        "relative bg-card rounded-2xl shadow-2xl border border-border/50 animate-in zoom-in-95 duration-300",
+        "relative bg-card/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-border/50 animate-in zoom-in-95 slide-in-from-bottom-4 duration-300",
         "max-h-[90vh] overflow-hidden",
+        "before:absolute before:inset-0 before:bg-gradient-to-br before:from-primary/5 before:to-transparent before:rounded-2xl",
         sizes[size],
         className
       )}>
         {/* Header */}
         {title && (
-          <div className="flex items-center justify-between p-6 border-b border-border/50">
-            <h2 className="text-xl font-semibold">{title}</h2>
+          <div className="relative z-10 flex items-center justify-between p-6 border-b border-border/50 bg-card/50 backdrop-blur-sm">
+            <h2 className="text-xl font-semibold bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text">{title}</h2>
             <button
               onClick={onClose}
-              className="p-2 rounded-full hover:bg-secondary/80 transition-colors duration-200 group"
+              className="p-2 rounded-full hover:bg-secondary/80 transition-all duration-200 group hover:scale-110 hover:shadow-lg"
             >
               <X className="w-5 h-5 group-hover:rotate-90 transition-transform duration-200" />
             </button>
@@ -77,7 +78,7 @@ export const EnhancedModal = ({
         )}
         
         {/* Content */}
-        <div className="p-6 overflow-y-auto max-h-[calc(90vh-8rem)]">
+        <div className="relative z-10 p-6 overflow-y-auto max-h-[calc(90vh-8rem)]">
           {children}
         </div>
       </div>

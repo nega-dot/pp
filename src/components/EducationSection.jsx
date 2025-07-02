@@ -1,4 +1,4 @@
-import { GraduationCap, Calendar, MapPin, BookOpen } from "lucide-react";
+import { GraduationCap, Calendar, MapPin, BookOpen, Star } from "lucide-react";
 
 const education = [
   {
@@ -14,7 +14,8 @@ const education = [
       "Graduate Research Assistant",
       "Published 2 papers on web performance"
     ],
-    color: "border-l-blue-500"
+    color: "border-l-blue-500",
+    bgGradient: "from-blue-500/10 to-transparent"
   },
   {
     id: 2,
@@ -29,7 +30,8 @@ const education = [
       "President of Computer Science Society",
       "Winner of Annual Hackathon 2019"
     ],
-    color: "border-l-purple-500"
+    color: "border-l-purple-500",
+    bgGradient: "from-purple-500/10 to-transparent"
   },
   {
     id: 3,
@@ -44,7 +46,8 @@ const education = [
       "Computer Science Award",
       "Mathematics Excellence Award"
     ],
-    color: "border-l-green-500"
+    color: "border-l-green-500",
+    bgGradient: "from-green-500/10 to-transparent"
   }
 ];
 
@@ -52,17 +55,22 @@ export const EducationSection = () => {
   return (
     <section id="education" className="py-24 px-4 relative bg-secondary/30">
       <div className="container mx-auto max-w-5xl">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
-          My <span className="text-primary">Education</span>
-        </h2>
-        
-        <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-          Academic journey that shaped my technical expertise and passion for web development.
-        </p>
+        <div className="text-center mb-16">
+          <div className="flex items-center justify-center gap-2 mb-4">
+            <GraduationCap className="w-6 h-6 text-primary animate-pulse" />
+            <h2 className="text-3xl md:text-4xl font-bold">
+              My <span className="text-primary bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">Education</span>
+            </h2>
+          </div>
+          
+          <p className="text-center text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+            Academic journey that shaped my technical expertise and passion for web development.
+          </p>
+        </div>
 
         <div className="relative">
-          {/* Timeline line */}
-          <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-primary/50 to-transparent hidden md:block"></div>
+          {/* Enhanced Timeline line */}
+          <div className="absolute left-8 top-0 bottom-0 w-1 bg-gradient-to-b from-primary via-primary/50 to-transparent hidden md:block rounded-full shadow-lg shadow-primary/20"></div>
           
           <div className="space-y-12">
             {education.map((edu, index) => (
@@ -71,55 +79,63 @@ export const EducationSection = () => {
                 className={`relative flex flex-col md:flex-row gap-6 group animate-fade-in`}
                 style={{ animationDelay: `${index * 0.2}s` }}
               >
-                {/* Timeline dot */}
-                <div className="hidden md:flex absolute left-6 w-4 h-4 bg-primary rounded-full border-4 border-background shadow-lg group-hover:scale-125 transition-transform duration-300"></div>
+                {/* Enhanced Timeline dot */}
+                <div className="hidden md:flex absolute left-6 w-6 h-6 bg-gradient-to-r from-primary to-primary/80 rounded-full border-4 border-background shadow-xl shadow-primary/30 group-hover:scale-125 group-hover:shadow-2xl group-hover:shadow-primary/40 transition-all duration-300 z-10">
+                  <div className="absolute inset-1 bg-primary/20 rounded-full animate-ping"></div>
+                </div>
                 
-                {/* Content card */}
-                <div className={`md:ml-16 bg-card rounded-xl p-6 shadow-xs card-hover border-l-4 ${edu.color} hover:shadow-xl transition-all duration-500`}>
-                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-4">
-                    <div>
-                      <h3 className="text-xl font-bold group-hover:text-primary transition-colors duration-300">
-                        {edu.degree}
-                      </h3>
-                      <p className="text-lg font-semibold text-muted-foreground">
-                        {edu.institution}
-                      </p>
+                {/* Enhanced Content card */}
+                <div className={`md:ml-16 bg-gradient-to-r ${edu.bgGradient} bg-card/90 backdrop-blur-sm rounded-xl p-6 shadow-lg hover:shadow-2xl border-l-4 ${edu.color} hover:shadow-xl transition-all duration-500 hover:scale-[1.02] relative overflow-hidden group`}>
+                  {/* Background shine effect */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-out"></div>
+                  
+                  <div className="relative z-10">
+                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-4">
+                      <div>
+                        <h3 className="text-xl font-bold group-hover:text-primary transition-colors duration-300 mb-1">
+                          {edu.degree}
+                        </h3>
+                        <p className="text-lg font-semibold text-muted-foreground group-hover:text-foreground/80 transition-colors duration-300">
+                          {edu.institution}
+                        </p>
+                      </div>
+                      
+                      <div className="flex flex-col sm:items-end gap-2">
+                        <div className="flex items-center gap-2 text-sm text-muted-foreground group-hover:text-foreground/70 transition-colors duration-300">
+                          <Calendar className="h-4 w-4" />
+                          <span>{edu.period}</span>
+                        </div>
+                        <div className="flex items-center gap-2 text-sm text-muted-foreground group-hover:text-foreground/70 transition-colors duration-300">
+                          <MapPin className="h-4 w-4" />
+                          <span>{edu.location}</span>
+                        </div>
+                        {edu.gpa && (
+                          <div className="flex items-center gap-2 text-sm font-medium text-primary bg-primary/10 px-2 py-1 rounded-full border border-primary/20">
+                            <Star className="h-4 w-4" />
+                            <span>GPA: {edu.gpa}</span>
+                          </div>
+                        )}
+                      </div>
                     </div>
                     
-                    <div className="flex flex-col sm:items-end gap-2">
-                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                        <Calendar className="h-4 w-4" />
-                        <span>{edu.period}</span>
+                    <p className="text-muted-foreground mb-4 leading-relaxed group-hover:text-foreground/80 transition-colors duration-300">
+                      {edu.description}
+                    </p>
+                    
+                    <div className="space-y-3">
+                      <div className="flex items-center gap-2 text-sm font-medium">
+                        <BookOpen className="h-4 w-4 text-primary" />
+                        <span>Key Achievements:</span>
                       </div>
-                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                        <MapPin className="h-4 w-4" />
-                        <span>{edu.location}</span>
+                      <div className="grid gap-2">
+                        {edu.achievements.map((achievement, idx) => (
+                          <div key={idx} className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 group/achievement">
+                            <div className="w-1.5 h-1.5 bg-primary rounded-full group-hover/achievement:scale-125 transition-transform duration-200"></div>
+                            <span className="group-hover/achievement:translate-x-1 transition-transform duration-200">{achievement}</span>
+                          </div>
+                        ))}
                       </div>
-                      {edu.gpa && (
-                        <div className="flex items-center gap-2 text-sm font-medium text-primary">
-                          <GraduationCap className="h-4 w-4" />
-                          <span>GPA: {edu.gpa}</span>
-                        </div>
-                      )}
                     </div>
-                  </div>
-                  
-                  <p className="text-muted-foreground mb-4 leading-relaxed">
-                    {edu.description}
-                  </p>
-                  
-                  <div className="space-y-2">
-                    <div className="flex items-center gap-2 text-sm font-medium">
-                      <BookOpen className="h-4 w-4 text-primary" />
-                      <span>Key Achievements:</span>
-                    </div>
-                    <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground ml-6">
-                      {edu.achievements.map((achievement, idx) => (
-                        <li key={idx} className="hover:text-foreground transition-colors duration-200">
-                          {achievement}
-                        </li>
-                      ))}
-                    </ul>
                   </div>
                 </div>
               </div>

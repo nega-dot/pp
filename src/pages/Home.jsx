@@ -1,6 +1,6 @@
 import { Navbar } from "../components/Navbar";
 import { ThemeToggle } from "../components/ThemeToggle";
-import { StarBackground } from "@/components/StarBackground";
+import { VideoBackground } from "@/components/VideoBackground";
 import { HeroSection } from "../components/HeroSection";
 import { AboutSection } from "../components/AboutSection";
 import { SkillsSection } from "../components/SkillsSection";
@@ -19,7 +19,7 @@ export const Home = () => {
       <ThemeToggle />
       
       {/* Background Effects */}
-      <StarBackground />
+      <VideoBackground />
       
       {/* Scroll Indicator */}
       <ScrollIndicator />

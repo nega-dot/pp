@@ -1,9 +1,9 @@
 import { Briefcase, Code, User } from "lucide-react";
+import { EnhancedButton } from "./ui/enhanced-button";
 
 export const AboutSection = () => {
   return (
     <section id="about" className="py-24 px-4 relative">
-      {" "}
       <div className="container mx-auto max-w-5xl">
         <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
           About <span className="text-primary"> Me</span>
@@ -29,24 +29,20 @@ export const AboutSection = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center">
-              <a href="#contact" className="cosmic-button">
-                {" "}
-                Get In Touch
-              </a>
+              <EnhancedButton asChild>
+                <a href="#contact">Get In Touch</a>
+              </EnhancedButton>
 
-              <a
-                href=""
-                className="px-6 py-2 rounded-full border border-primary text-primary hover:bg-primary/10 transition-colors duration-300"
-              >
-                Download CV
-              </a>
+              <EnhancedButton variant="outline" asChild>
+                <a href="">Download CV</a>
+              </EnhancedButton>
             </div>
           </div>
 
           <div className="grid grid-cols-1 gap-6">
-            <div className="gradient-border p-6 card-hover">
+            <div className="gradient-border p-6 card-hover glass-effect">
               <div className="flex items-start gap-4">
-                <div className="p-3 rounded-full bg-primary/10">
+                <div className="p-3 rounded-full bg-primary/10 enhanced-hover">
                   <Code className="h-6 w-6 text-primary" />
                 </div>
                 <div className="text-left">
@@ -58,9 +54,9 @@ export const AboutSection = () => {
                 </div>
               </div>
             </div>
-            <div className="gradient-border p-6 card-hover">
+            <div className="gradient-border p-6 card-hover glass-effect">
               <div className="flex items-start gap-4">
-                <div className="p-3 rounded-full bg-primary/10">
+                <div className="p-3 rounded-full bg-primary/10 enhanced-hover">
                   <User className="h-6 w-6 text-primary" />
                 </div>
                 <div className="text-left">
@@ -72,9 +68,9 @@ export const AboutSection = () => {
                 </div>
               </div>
             </div>
-            <div className="gradient-border p-6 card-hover">
+            <div className="gradient-border p-6 card-hover glass-effect">
               <div className="flex items-start gap-4">
-                <div className="p-3 rounded-full bg-primary/10">
+                <div className="p-3 rounded-full bg-primary/10 enhanced-hover">
                   <Briefcase className="h-6 w-6 text-primary" />
                 </div>
 

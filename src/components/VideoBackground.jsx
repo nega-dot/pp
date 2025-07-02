@@ -16,7 +16,7 @@ export const VideoBackground = () => {
   useEffect(() => {
     // Preload video for better performance
     const video = document.createElement('video');
-    video.src = "https://videos.pexels.com/video-files/11353720/11353720-uhd_2560_1440_25fps.mp4";
+    video.src = "https://videos.pexels.com/video-files/11353720/11353720-uhd_2560_1440_60fps.mp4";
     video.load();
   }, []);
 
@@ -48,7 +48,7 @@ export const VideoBackground = () => {
         }}
       >
         <source 
-          src="https://videos.pexels.com/video-files/11353720/11353720-uhd_2560_1440_25fps.mp4" 
+          src="https://videos.pexels.com/video-files/11353720/11353720-uhd_2560_1440_60fps.mp4" 
           type="video/mp4" 
         />
         {/* Fallback for browsers that don't support video */}
